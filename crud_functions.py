@@ -40,18 +40,24 @@ initiate_db()
 
 
 
-def get_all_products():
-	connection = sqlite3.connect("data_base.db")
-	cursor = connection.cursor()
-	info_products = cursor.execute("SELECT * FROM Products").fetchall()
+def add_user(username, email, age):
+    connection = sqlite3.connect("data_base.db")
+    cursor = connection.cursor()
+    balance = 1000
+    cursor.execute('''
+    INSERT INTO Users (username, email, age, balance) VALUES (?, ?, ?, ?)
+    ''', (username, email, age, balance))
+    connection.commit()
+    connection.close()
 
 
-	connection.commit()
-	connection.close()
-	print(info_products)
-	return info_products
-get_all_products()
-
+def is_included(username):
+    connection = sqlite3.connect("data_base.db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM Users WHERE username = ?", (username,))
+    user = cursor.fetchone()
+    connection.close()
+    return user is not None
 
 
 
