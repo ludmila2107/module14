@@ -7,7 +7,7 @@ from crud_functions import initiate_db
 from crud_functions import is_included
 from crud_functions import add_user
 
-bot = Bot(token='8137647188:AAHzOOUEOq11zhNQJBJa8K1xm3Dvrj3E_C0')
+bot = Bot(token='')
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
